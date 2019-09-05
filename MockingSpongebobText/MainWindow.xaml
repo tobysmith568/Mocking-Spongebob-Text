@@ -4,9 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MockingSpongebobText"
+        xmlns:tb="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Closing="Window_Closing">
+    <Window.Resources>
+        <BitmapImage x:Key="MockingSpongebob" UriSource="/MockingSpongebobText;component/Resources/MockingSpongebob.ico" />
+    </Window.Resources>
     <Grid>
-        
+        <tb:TaskbarIcon IconSource="{StaticResource MockingSpongebob}" ToolTipText="Mocking Spongebob Text" LeftClickCommand="{Binding IconLeftClick, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"  />
     </Grid>
 </Window>

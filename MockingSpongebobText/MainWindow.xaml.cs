@@ -7,13 +7,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Gma.System.MouseKeyHook;
+using Forms = System.Windows.Forms;
 using Clipboard = System.Windows.Forms.Clipboard;
 
 namespace MockingSpongebobText
@@ -26,7 +26,8 @@ namespace MockingSpongebobText
         //  Variables
         //  =========
 
-        private IKeyboardMouseEvents keyboardMouseEvents;
+        private readonly IKeyboardMouseEvents keyboardMouseEvents;
+        private MockType selectedMockType;
 
         //  Properties
         //  ==========
@@ -70,13 +71,13 @@ namespace MockingSpongebobText
         /// <exception cref="System.Threading.ThreadStateException"></exception>
         private void KeyboardMouseEvents_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            if (e.Shift && e.Alt && e.KeyCode == Keys.S)
+            if (e.Shift && e.Alt && e.KeyCode == Forms.Keys.S)
             {
                 if (Clipboard.ContainsText())
                 {
                     string content = Clipboard.GetText();
 
-                    content = MockifyText(content);
+                    content = selectedMockType.MockifyText(content);
 
                     Clipboard.SetText(content);
                 }
@@ -106,6 +107,21 @@ namespace MockingSpongebobText
             }
 
             return result;
+        }
+
+        private void RadioButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!(sender is RadioButton radioButton))
+            {
+                throw new ArgumentException("Arg [sender] must be a RadioButton");
+            }
+
+            if (!(radioButton.CommandParameter is MockType mockType))
+            {
+                throw new ArgumentException("Arg [sender] .CommandParameter must be a MockType");
+            }
+
+            selectedMockType = mockType;
         }
     }
 }

@@ -32,7 +32,7 @@
                 <ComboBox Name="cbCase" Margin="10" SelectionChanged="CbCase_SelectionChanged"/>
             </Grid>
         </GroupBox>
-        <Button Content="Quit Application" HorizontalAlignment="Left" Margin="10,366,0,0" VerticalAlignment="Top" Width="106" Height="25"/>
-        <Button Content="Close Window" HorizontalAlignment="Right" Margin="0,366,10,0" VerticalAlignment="Top" Width="106" Height="25"/>
+        <Button Content="Quit Application" HorizontalAlignment="Left" Margin="10,366,0,0" VerticalAlignment="Top" Width="106" Height="25" Click="CloseApplication"/>
+        <Button Content="Close Window" HorizontalAlignment="Right" Margin="0,366,10,0" VerticalAlignment="Top" Width="106" Height="25" Click="CloseWindow"/>
     </Grid>
 </Window>

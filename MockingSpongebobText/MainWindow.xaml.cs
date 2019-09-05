@@ -28,6 +28,7 @@ namespace MockingSpongebobText
 
         private readonly IKeyboardMouseEvents keyboardMouseEvents;
         private MockType selectedMockType;
+        private bool closeLock;
 
         //  Properties
         //  ==========
@@ -42,6 +43,8 @@ namespace MockingSpongebobText
         /// <exception cref="InvalidOperationException"></exception>
         public MainWindow()
         {
+            closeLock = true;
+
             InitializeComponent();
 
             foreach (char letter in "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890")
@@ -72,8 +75,11 @@ namespace MockingSpongebobText
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Visibility = Visibility.Hidden;
-            e.Cancel = true;
+            if (closeLock)
+            {
+                Visibility = Visibility.Hidden;
+                e.Cancel = true;
+            }
         }
 
         /// <exception cref="System.Runtime.InteropServices.ExternalException"></exception>
@@ -107,6 +113,17 @@ namespace MockingSpongebobText
             }
 
             selectedMockType = mockType;
+        }
+
+        private void CloseApplication(object sender, RoutedEventArgs e)
+        {
+            closeLock = false;
+            Close();
+        }
+
+        private void CloseWindow(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
 
         //  Methods

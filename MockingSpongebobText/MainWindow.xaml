@@ -6,11 +6,41 @@
         xmlns:local="clr-namespace:MockingSpongebobText"
         xmlns:tb="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Closing="Window_Closing">
+        Title="MainWindow" Height="400" Width="414" ResizeMode="NoResize" Closing="Window_Closing">
     <Window.Resources>
         <BitmapImage x:Key="MockingSpongebob" UriSource="/MockingSpongebobText;component/Resources/MockingSpongebob.ico" />
     </Window.Resources>
     <Grid>
         <tb:TaskbarIcon IconSource="{StaticResource MockingSpongebob}" ToolTipText="Mocking Spongebob Text" LeftClickCommand="{Binding IconLeftClick, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"  />
+        <GroupBox Header="KeyBinding" Height="100" Margin="10,10,10,0" VerticalAlignment="Top">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" Margin="0" Grid.Row="0" >
+                    <CheckBox Content="Control" VerticalContentAlignment="Center" Margin="10,0" />
+                    <CheckBox Content="Shift" VerticalContentAlignment="Center" Margin="10,0" />
+                    <CheckBox Content="Alt" VerticalContentAlignment="Center" Margin="10,0" />
+                </StackPanel>
+                <ComboBox Name="KeyComboBox" HorizontalAlignment="Left" Margin="10,5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="24"/>
+
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Case Pattern" Height="204" Margin="10,115,10,0" VerticalAlignment="Top">
+            <StackPanel>
+                <RadioButton Content="All Upper" Margin="10,5,5,0" />
+                <RadioButton Content="All Lower" Margin="10,5,5,0" />
+                <RadioButton Content="Alternating starting upper" Margin="10,5,5,0" />
+                <RadioButton Content="Alternating starting lower" Margin="10,5,5,0" />
+                <RadioButton Content="All Random" Margin="10,5,5,0" />
+                <RadioButton Content="Random always starting upper" Margin="10,5,5,0" />
+                <RadioButton Content="Random always starting lower" Margin="10,5,5,0" />
+                <RadioButton Content="Random words always start upper" Margin="10,5,5,0" />
+                <RadioButton Content="Random words always start lower" Margin="10,5,5,0" />
+            </StackPanel>
+        </GroupBox>
+        <Button Content="Quit Application" HorizontalAlignment="Left" Margin="10,324,0,0" VerticalAlignment="Top" Width="106" Height="25"/>
+        <Button Content="Close Window" HorizontalAlignment="Right" Margin="0,324,10,0" VerticalAlignment="Top" Width="106" Height="25"/>
     </Grid>
 </Window>

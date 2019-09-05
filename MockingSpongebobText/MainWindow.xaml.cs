@@ -36,9 +36,20 @@ namespace MockingSpongebobText
         //  Constructors
         //  ============
 
+        /// <exception cref="System.Runtime.InteropServices.ExternalException"></exception>
+        /// <exception cref="System.Threading.ThreadStateException"></exception>
+        /// <exception cref="InvalidOperationException"></exception>
         public MainWindow()
         {
             InitializeComponent();
+
+            foreach (char letter in "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890")
+            {
+                KeyComboBox.Items.Add(new ComboBoxItem()
+                {
+                    Content = letter
+                });
+            }
 
             IconLeftClick = new Command(DoIconLeftClick);
 

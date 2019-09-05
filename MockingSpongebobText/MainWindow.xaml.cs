@@ -46,9 +46,18 @@ namespace MockingSpongebobText
 
             foreach (char letter in "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890")
             {
-                KeyComboBox.Items.Add(new ComboBoxItem()
+                cbKeys.Items.Add(new ComboBoxItem()
                 {
                     Content = letter
+                });
+            }
+
+            foreach (MockType mockType in Enum.GetValues(typeof(MockType)))
+            {
+                cbCase.Items.Add(new ComboBoxItem()
+                {
+                    Content = mockType.ReadableText(),
+                    Tag = mockType
                 });
             }
 
@@ -84,44 +93,28 @@ namespace MockingSpongebobText
             }
         }
 
+        /// <exception cref="InvalidOperationException">Ignore.</exception>
+        private void CbCase_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!(cbCase.SelectedItem is ComboBoxItem comboBoxItem))
+            {
+                throw new InvalidOperationException("Selected item is not a comboBoxItem!");
+            }
+
+            if (!(comboBoxItem.Tag is MockType mockType))
+            {
+                throw new InvalidOperationException("Unknown Case Pattern!");
+            }
+
+            selectedMockType = mockType;
+        }
+
         //  Methods
         //  =======
 
         private void DoIconLeftClick()
         {
             Visibility = Visibility.Visible;
-        }
-
-        private string MockifyText(string input)
-        {
-            if (input == null)
-            {
-                return string.Empty;
-            }
-
-            string result = string.Empty;
-
-            for (int i = 0; i < input.Length; i++)
-            {
-                result += i % 2 == 0 ? char.ToUpper(input[i]) : char.ToLower(input[i]);
-            }
-
-            return result;
-        }
-
-        private void RadioButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (!(sender is RadioButton radioButton))
-            {
-                throw new ArgumentException("Arg [sender] must be a RadioButton");
-            }
-
-            if (!(radioButton.CommandParameter is MockType mockType))
-            {
-                throw new ArgumentException("Arg [sender] .CommandParameter must be a MockType");
-            }
-
-            selectedMockType = mockType;
         }
     }
 }

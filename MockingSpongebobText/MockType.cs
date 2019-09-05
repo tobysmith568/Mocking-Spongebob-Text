@@ -26,6 +26,38 @@ namespace MockingSpongebobText
         private static readonly Random random = new Random();
 
         /// <exception cref="InvalidOperationException">Ignore.</exception>
+        public static string ReadableText(this MockType mockType)
+        {
+            switch (mockType)
+            {
+                case MockType.AllUpper:
+                    return "All upper";
+                case MockType.AllLower:
+                    return "All lower";
+                case MockType.AlternatingStartingUpper:
+                    return "Alternating starting upper";
+                case MockType.AlternatingStartingLower:
+                    return "Alternating starting lower";
+                case MockType.AlternatingWordsAlwaysStartingUpper:
+                    return "Alternating words always starting upper";
+                case MockType.AlternatingWordsAlwaysStartingLower:
+                    return "Alternating words always starting lower";
+                case MockType.AllRandom:
+                    return "All random";
+                case MockType.RandomAlwaysStartingUpper:
+                    return "Random always starting upper";
+                case MockType.RandomAlwaysStartingLower:
+                    return "Random always starting lower";
+                case MockType.RandomWordsAlwaysStartingUpper:
+                    return "Random words always starting upper";
+                case MockType.RandomWordsAlwaysStartingLower:
+                    return "Random words always starting upper";
+                default:
+                    throw new InvalidOperationException();
+            }
+        }
+
+        /// <exception cref="InvalidOperationException">Ignore.</exception>
         public static string MockifyText(this MockType mockType, string text)
         {
             text = text ?? throw new ArgumentNullException(nameof(text));

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MockingSpongebobText"
         xmlns:tb="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"
-        Title="Mocking Spongebob Text Converter" Height="440" Width="414" ResizeMode="NoResize" Closing="Window_Closing">
+        Title="Mocking Spongebob Text Converter" Height="440" Width="414" ResizeMode="NoResize" Closing="Window_Closing" Icon="Resources/MockingSpongebob.ico">
     <Window.Resources>
         <BitmapImage x:Key="MockingSpongebob" UriSource="/MockingSpongebobText;component/Resources/MockingSpongebob.ico" />
     </Window.Resources>

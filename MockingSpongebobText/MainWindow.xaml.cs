@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Gma.System.MouseKeyHook;
 using Forms = System.Windows.Forms;
 using Clipboard = System.Windows.Forms.Clipboard;
+using Settings = MockingSpongebobText.Properties.Settings;
 
 namespace MockingSpongebobText
 {
@@ -74,6 +75,8 @@ namespace MockingSpongebobText
 
             keyboardMouseEvents = Hook.GlobalEvents();
             keyboardMouseEvents.KeyDown += KeyboardMouseEvents_KeyDown;
+
+            ImportSavedData();
         }
 
         //  Events
@@ -123,6 +126,11 @@ namespace MockingSpongebobText
             }
         }
 
+        private void CbKeys_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Settings.Default.KeyIndex = cbKeys.SelectedIndex;
+        }
+
         /// <exception cref="InvalidOperationException">Ignore.</exception>
         private void CbCase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -137,6 +145,7 @@ namespace MockingSpongebobText
             }
 
             selectedMockType = mockType;
+            Settings.Default.MockType = (int)mockType;
         }
 
         private void CloseApplication(object sender, RoutedEventArgs e)
@@ -152,36 +161,51 @@ namespace MockingSpongebobText
 
         private void UppercaseLs_Checked(object sender, RoutedEventArgs e)
         {
-            UpperCaseLs = cbUpperCaseLs.IsChecked == true;
+            Settings.Default.AlwaysUppercaseLs = UpperCaseLs = cbUpperCaseLs.IsChecked == true;
         }
 
         private void LowerCaseIs_Checked(object sender, RoutedEventArgs e)
         {
-            LowerCaseIs = cbLowerCaseIs.IsChecked == true;
+            Settings.Default.AlwaysLowercaseIs = LowerCaseIs = cbLowerCaseIs.IsChecked == true;
         }
 
         private void LowerCaseOs_Checked(object sender, RoutedEventArgs e)
         {
-            LowerCaseOs = cbLowerCaseOs.IsChecked == true;
+            Settings.Default.AlwaysLowerCaseOs = LowerCaseOs = cbLowerCaseOs.IsChecked == true;
         }
 
         private void UsingControl_Checked(object sender, RoutedEventArgs e)
         {
-            usingControl = cbUsingControl.IsChecked == true;
+            Settings.Default.UsingControl = usingControl = cbUsingControl.IsChecked == true;
         }
 
         private void UsingShift_Checked(object sender, RoutedEventArgs e)
         {
-            usingShift = cbUsingShift.IsChecked == true;
+            Settings.Default.UsingShift = usingShift = cbUsingShift.IsChecked == true;
         }
 
         private void UsingAlt_Checked(object sender, RoutedEventArgs e)
         {
-            usingAlt = cbUsingAlt.IsChecked == true;
+            Settings.Default.UsingAlt = usingAlt = cbUsingAlt.IsChecked == true;
         }
 
         //  Methods
         //  =======
+
+        private void ImportSavedData()
+        {
+            cbUsingControl.IsChecked = Settings.Default.UsingControl;
+            cbUsingShift.IsChecked = Settings.Default.UsingShift;
+            cbUsingAlt.IsChecked = Settings.Default.UsingAlt;
+
+            cbKeys.SelectedIndex = Settings.Default.KeyIndex;
+
+            cbCase.SelectedIndex = Settings.Default.MockType;
+
+            cbUpperCaseLs.IsChecked = Settings.Default.AlwaysUppercaseLs;
+            cbLowerCaseIs.IsChecked = Settings.Default.AlwaysLowercaseIs;
+            cbLowerCaseOs.IsChecked = Settings.Default.AlwaysLowerCaseOs;
+        }
 
         private void DoIconLeftClick()
         {

@@ -23,7 +23,7 @@
                     <CheckBox Name="cbUsingShift" Content="Shift" VerticalContentAlignment="Center" Margin="10,0" Checked="UsingShift_Checked" Unchecked="UsingShift_Checked" />
                     <CheckBox Name="cbUsingAlt" Content="Alt" VerticalContentAlignment="Center" Margin="10,0" Checked="UsingAlt_Checked" Unchecked="UsingAlt_Checked" />
                 </StackPanel>
-                <ComboBox Name="cbKeys" HorizontalAlignment="Left" Margin="10,5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="24"/>
+                <ComboBox Name="cbKeys" HorizontalAlignment="Left" Margin="10,5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="24" SelectionChanged="CbKeys_SelectionChanged"/>
 
             </Grid>
         </GroupBox>

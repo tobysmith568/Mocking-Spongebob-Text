@@ -5,13 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MockingSpongebobText"
         xmlns:tb="http://www.hardcodet.net/taskbar"
-        mc:Ignorable="d"
+        mc:Ignorable="d" DataContext="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}"
         Title="Mocking Spongebob Text Converter" Height="368" Width="414" ResizeMode="NoResize" Closing="Window_Closing" Icon="Resources/MockingSpongebob.ico">
     <Window.Resources>
         <BitmapImage x:Key="MockingSpongebob" UriSource="/MockingSpongebobText;component/Resources/MockingSpongebob.ico" />
     </Window.Resources>
     <Grid>
-        <tb:TaskbarIcon IconSource="{StaticResource MockingSpongebob}" ToolTipText="Mocking Spongebob Text Converter" LeftClickCommand="{Binding IconLeftClick, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"  />
+        <tb:TaskbarIcon IconSource="{StaticResource MockingSpongebob}"
+                        ToolTipText="Mocking Spongebob Text Converter"
+                        LeftClickCommand="{Binding IconLeftClick, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}" 
+                        >
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Open" Click="IconMenu_Open_Click"/>
+                    <Separator/>
+                    <MenuItem Header="About" Click="IconMenu_About_Click"/>
+                    <Separator/>
+                    <MenuItem Header="Exit" Click="CloseApplication"/>
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+        </tb:TaskbarIcon>
+        
+        
         <GroupBox Header="KeyBinding" Height="100" Margin="10,10,10,0" VerticalAlignment="Top">
             <Grid>
                 <Grid.RowDefinitions>

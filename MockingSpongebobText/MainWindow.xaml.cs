@@ -158,8 +158,7 @@ namespace MockingSpongebobText
 
         private void CloseApplication(object sender, RoutedEventArgs e)
         {
-            closeLock = false;
-            Close();
+            ExitApplication();
         }
 
         private void CloseWindow(object sender, RoutedEventArgs e)
@@ -220,6 +219,18 @@ namespace MockingSpongebobText
             }
         }
 
+        private void IconMenu_Open_Click(object sender, RoutedEventArgs e)
+        {
+            DoIconLeftClick();
+        }
+
+        /// <exception cref="InvalidOperationException">Ignore.</exception>
+        private void IconMenu_About_Click(object sender, RoutedEventArgs e)
+        {
+            AboutBox aboutBox = new AboutBox();
+            aboutBox.ShowDialog();
+        }
+
         //  Methods
         //  =======
 
@@ -250,6 +261,12 @@ namespace MockingSpongebobText
         private void DoIconLeftClick()
         {
             Visibility = Visibility.Visible;
+        }
+
+        private void ExitApplication()
+        {
+            closeLock = false;
+            Close();
         }
     }
 }

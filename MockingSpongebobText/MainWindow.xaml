@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MockingSpongebobText"
         xmlns:tb="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"
-        Title="Mocking Spongebob Text Converter" Height="333" Width="414" ResizeMode="NoResize" Closing="Window_Closing" Icon="Resources/MockingSpongebob.ico">
+        Title="Mocking Spongebob Text Converter" Height="343" Width="414" ResizeMode="NoResize" Closing="Window_Closing" Icon="Resources/MockingSpongebob.ico">
     <Window.Resources>
         <BitmapImage x:Key="MockingSpongebob" UriSource="/MockingSpongebobText;component/Resources/MockingSpongebob.ico" />
     </Window.Resources>
@@ -19,9 +19,9 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal" Margin="0" Grid.Row="0" >
-                    <CheckBox Content="Control" VerticalContentAlignment="Center" Margin="10,0" />
-                    <CheckBox Content="Shift" VerticalContentAlignment="Center" Margin="10,0" />
-                    <CheckBox Content="Alt" VerticalContentAlignment="Center" Margin="10,0" />
+                    <CheckBox Name="cbUsingControl" Content="Control" VerticalContentAlignment="Center" Margin="10,0" Checked="UsingControl_Checked" Unchecked="UsingControl_Checked" />
+                    <CheckBox Name="cbUsingShift" Content="Shift" VerticalContentAlignment="Center" Margin="10,0" Checked="UsingShift_Checked" Unchecked="UsingShift_Checked" />
+                    <CheckBox Name="cbUsingAlt" Content="Alt" VerticalContentAlignment="Center" Margin="10,0" Checked="UsingAlt_Checked" Unchecked="UsingAlt_Checked" />
                 </StackPanel>
                 <ComboBox Name="cbKeys" HorizontalAlignment="Left" Margin="10,5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="24"/>
 

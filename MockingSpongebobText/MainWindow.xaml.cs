@@ -29,6 +29,9 @@ namespace MockingSpongebobText
         private readonly IKeyboardMouseEvents keyboardMouseEvents;
         private MockType selectedMockType;
         private bool closeLock;
+        private bool usingControl;
+        private bool usingShift;
+        private bool usingAlt;
 
         //  Properties
         //  ==========
@@ -89,7 +92,25 @@ namespace MockingSpongebobText
         /// <exception cref="System.Threading.ThreadStateException"></exception>
         private void KeyboardMouseEvents_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            if (e.Shift && e.Alt && e.KeyCode == Forms.Keys.S)
+            if ((usingControl && e.Control == false) ||
+               (!usingControl && e.Control == true))
+            {
+                return;
+            }
+
+            if ((usingShift && e.Shift == false) ||
+               (!usingShift && e.Shift == true))
+            {
+                return;
+            }
+
+            if ((usingAlt && e.Alt == false) ||
+               (!usingAlt && e.Alt == true))
+            {
+                return;
+            }
+
+            if (((char)e.KeyValue) == cbKeys.SelectedItem.ToString()[0])
             {
                 if (Clipboard.ContainsText())
                 {
@@ -142,6 +163,21 @@ namespace MockingSpongebobText
         private void LowerCaseOs_Checked(object sender, RoutedEventArgs e)
         {
             LowerCaseOs = cbLowerCaseOs.IsChecked == true;
+        }
+
+        private void UsingControl_Checked(object sender, RoutedEventArgs e)
+        {
+            usingControl = cbUsingControl.IsChecked == true;
+        }
+
+        private void UsingShift_Checked(object sender, RoutedEventArgs e)
+        {
+            usingShift = cbUsingShift.IsChecked == true;
+        }
+
+        private void UsingAlt_Checked(object sender, RoutedEventArgs e)
+        {
+            usingAlt = cbUsingAlt.IsChecked == true;
         }
 
         //  Methods

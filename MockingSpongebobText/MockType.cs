@@ -99,12 +99,26 @@ namespace MockingSpongebobText
 
         private static string AllUpper(string text)
         {
-            return text.ToUpper();
+            string result = string.Empty;
+
+            for (int i = 0; i < text.Length; i++)
+            {
+                result += text[i].ToUpper();
+            }
+
+            return result;
         }
 
         private static string AllLower(string text)
         {
-            return text.ToLower();
+            string result = string.Empty;
+
+            for (int i = 0; i < text.Length; i++)
+            {
+                result += text[i].ToLower();
+            }
+
+            return result;
         }
 
         private static string Alternating(string text, bool startUpper)
@@ -228,11 +242,32 @@ namespace MockingSpongebobText
     {
         public static char ToUpper(this char c)
         {
-            return char.ToUpper(c);
+            return TestRules(c) ?? char.ToUpper(c);
         }
+
         public static char ToLower(this char c)
         {
-            return char.ToLower(c);
+            return TestRules(c) ?? char.ToLower(c);
+        }
+
+        private static char? TestRules(char c)
+        {
+            if (MainWindow.UpperCaseLs && (c == 'l' || c == 'L'))
+            {
+                return 'L';
+            }
+
+            if (MainWindow.LowerCaseIs && (c == 'i' || c == 'I'))
+            {
+                return 'i';
+            }
+
+            if (MainWindow.LowerCaseOs && (c == 'o' || c == 'O'))
+            {
+                return 'o';
+            }
+
+            return null;
         }
     }
 }

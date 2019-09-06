@@ -34,6 +34,9 @@ namespace MockingSpongebobText
         //  ==========
 
         public Command IconLeftClick { get; set; }
+        public static bool UpperCaseLs { get; private set; }
+        public static bool LowerCaseIs { get; private set; }
+        public static bool LowerCaseOs { get; private set; }
 
         //  Constructors
         //  ============
@@ -124,6 +127,21 @@ namespace MockingSpongebobText
         private void CloseWindow(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void UppercaseLs_Checked(object sender, RoutedEventArgs e)
+        {
+            UpperCaseLs = cbUpperCaseLs.IsChecked == true;
+        }
+
+        private void LowerCaseIs_Checked(object sender, RoutedEventArgs e)
+        {
+            LowerCaseIs = cbLowerCaseIs.IsChecked == true;
+        }
+
+        private void LowerCaseOs_Checked(object sender, RoutedEventArgs e)
+        {
+            LowerCaseOs = cbLowerCaseOs.IsChecked == true;
         }
 
         //  Methods

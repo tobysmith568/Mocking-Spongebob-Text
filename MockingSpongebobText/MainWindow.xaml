@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MockingSpongebobText"
         xmlns:tb="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"
-        Title="Mocking Spongebob Text Converter" Height="440" Width="414" ResizeMode="NoResize" Closing="Window_Closing" Icon="Resources/MockingSpongebob.ico">
+        Title="Mocking Spongebob Text Converter" Height="333" Width="414" ResizeMode="NoResize" Closing="Window_Closing" Icon="Resources/MockingSpongebob.ico">
     <Window.Resources>
         <BitmapImage x:Key="MockingSpongebob" UriSource="/MockingSpongebobText;component/Resources/MockingSpongebob.ico" />
     </Window.Resources>
@@ -32,7 +32,14 @@
                 <ComboBox Name="cbCase" Margin="10" SelectionChanged="CbCase_SelectionChanged"/>
             </Grid>
         </GroupBox>
-        <Button Content="Quit Application" HorizontalAlignment="Left" Margin="10,366,0,0" VerticalAlignment="Top" Width="106" Height="25" Click="CloseApplication"/>
-        <Button Content="Close Window" HorizontalAlignment="Right" Margin="0,366,10,0" VerticalAlignment="Top" Width="106" Height="25" Click="CloseWindow"/>
+        <GroupBox Header="Pattern Exceptions" Height="75" Margin="10,186,10,0" VerticalAlignment="Top">
+            <WrapPanel>
+                <CheckBox Name="cbUpperCaseLs" Content="Always uppercase 'L's" Margin="5" Checked="UppercaseLs_Checked" Unchecked="UppercaseLs_Checked"/>
+                <CheckBox Name="cbLowerCaseIs" Content="Always lowercase 'i's" Margin="5" Checked="LowerCaseIs_Checked" Unchecked="LowerCaseIs_Checked"/>
+                <CheckBox Name="cbLowerCaseOs" Content="Always lowercase 'o's" Margin="5" Checked="LowerCaseOs_Checked" Unchecked="LowerCaseOs_Checked"/>
+            </WrapPanel>
+        </GroupBox>
+        <Button Content="Quit Application" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="106" Height="25" Click="CloseApplication"/>
+        <Button Content="Close Window" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="106" Height="25" Click="CloseWindow"/>
     </Grid>
 </Window>

@@ -16,6 +16,8 @@ using Gma.System.MouseKeyHook;
 using Forms = System.Windows.Forms;
 using Clipboard = System.Windows.Forms.Clipboard;
 using Settings = MockingSpongebobText.Properties.Settings;
+using Microsoft.Win32;
+using System.Diagnostics;
 
 namespace MockingSpongebobText
 {
@@ -24,6 +26,12 @@ namespace MockingSpongebobText
     /// </summary>
     public partial class MainWindow : Window
     {
+        //  Constants
+        //  =========
+
+        private const string RegistryKeyName = "MockingSpongebobText";
+        private const string RegistryPath = @"Software\Microsoft\Windows\CurrentVersion\Run";
+
         //  Variables
         //  =========
 
@@ -189,9 +197,36 @@ namespace MockingSpongebobText
             Settings.Default.UsingAlt = usingAlt = cbUsingAlt.IsChecked == true;
         }
 
+        /// <exception cref="ObjectDisposedException">Ignore.</exception>
+        /// <exception cref="System.Security.SecurityException">Ignore.</exception>
+        /// <exception cref="UnauthorizedAccessException">Ignore.</exception>
+        /// <exception cref="System.IO.IOException">Ignore.</exception>
+        private void CbRunOnWindowsStartup_Checked(object sender, RoutedEventArgs e)
+        {
+            using (RegistryKey key = Registry.CurrentUser.OpenSubKey(RegistryPath, true))
+            {
+                key.SetValue(RegistryKeyName, $"\"{Process.GetCurrentProcess().MainModule.FileName}\" nogui");
+            }
+        }
+
+        /// <exception cref="ObjectDisposedException">Ignore.</exception>
+        /// <exception cref="System.Security.SecurityException">Ignore.</exception>
+        /// <exception cref="UnauthorizedAccessException">Ignore.</exception>
+        private void CbRunOnWindowsStartup_Unchecked(object sender, RoutedEventArgs e)
+        {
+            using (RegistryKey key = Registry.CurrentUser.OpenSubKey(RegistryPath, true))
+            {
+                key.DeleteValue(RegistryKeyName);
+            }
+        }
+
         //  Methods
         //  =======
 
+        /// <exception cref="ObjectDisposedException">Ignore.</exception>
+        /// <exception cref="System.Security.SecurityException">Ignore.</exception>
+        /// <exception cref="System.IO.IOException">Ignore.</exception>
+        /// <exception cref="UnauthorizedAccessException">Ignore.</exception>
         private void ImportSavedData()
         {
             cbUsingControl.IsChecked = Settings.Default.UsingControl;
@@ -205,6 +240,11 @@ namespace MockingSpongebobText
             cbUpperCaseLs.IsChecked = Settings.Default.AlwaysUppercaseLs;
             cbLowerCaseIs.IsChecked = Settings.Default.AlwaysLowercaseIs;
             cbLowerCaseOs.IsChecked = Settings.Default.AlwaysLowerCaseOs;
+
+            using (RegistryKey key = Registry.CurrentUser.OpenSubKey(RegistryPath, false))
+            {
+                cbRunOnWindowsStartup.IsChecked = key.GetValue(RegistryKeyName) != null;
+            }
         }
 
         private void DoIconLeftClick()

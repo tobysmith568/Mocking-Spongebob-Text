@@ -7,7 +7,7 @@
     <ProjectGuid>{54A7F8D8-A58C-427C-996A-655C6DE5740C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>MockingSpongebobText</RootNamespace>
-    <AssemblyName>MockingSpongebobText</AssemblyName>
+    <AssemblyName>Mocking Spongebob Text Converter</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -33,6 +33,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\MockingSpongebob.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Gma.System.MouseKeyHook, Version=5.6.130.0, Culture=neutral, processorArchitecture=MSIL">

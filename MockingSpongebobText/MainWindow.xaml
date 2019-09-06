@@ -8,7 +8,7 @@
         mc:Ignorable="d" DataContext="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}"
         Title="Mocking Spongebob Text Converter" Height="368" Width="414" ResizeMode="NoResize" Closing="Window_Closing" Icon="Resources/MockingSpongebob.ico">
     <Window.Resources>
-        <BitmapImage x:Key="MockingSpongebob" UriSource="/MockingSpongebobText;component/Resources/MockingSpongebob.ico" />
+        <BitmapImage x:Key="MockingSpongebob" UriSource="/Mocking Spongebob Text Converter;component/Resources/MockingSpongebob.ico" />
     </Window.Resources>
     <Grid>
         <tb:TaskbarIcon IconSource="{StaticResource MockingSpongebob}"
